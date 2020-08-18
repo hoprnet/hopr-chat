@@ -1,3 +1,4 @@
+// REPL Command
 export default interface Command {
   execute(...props: any[]): void | Promise<void>
   complete(
