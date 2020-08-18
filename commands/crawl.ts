@@ -5,11 +5,10 @@ import chalk from 'chalk'
 import PeerId from 'peer-id'
 
 import { isBootstrapNode } from '../utils'
+import { AbstractCommand } from './abstractCommand'
 
-import AbstractCommand from './abstractCommand'
-
-export default class Crawl implements AbstractCommand {
-  constructor(public node: Hopr<HoprCoreConnector>) {}
+export default class Crawl extends AbstractCommand {
+  constructor(public node: Hopr<HoprCoreConnector>) {super()}
 
   name() {
     return 'crawl'
@@ -30,9 +29,5 @@ export default class Crawl implements AbstractCommand {
     } catch (err) {
       console.log(chalk.red(err.message))
     }
-  }
-
-  complete(line: string, cb: (err: Error | undefined, hits: [string[], string]) => void): void {
-    cb(undefined, [[''], line])
   }
 }

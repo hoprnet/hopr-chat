@@ -1,7 +1,7 @@
 import type HoprCoreConnector from '@hoprnet/hopr-core-connector-interface'
 import type Hopr from '@hoprnet/hopr-core'
-import type AbstractCommand from './abstractCommand'
-
+import type { AutoCompleteResult } from './abstractCommand'
+import { AbstractCommand } from './abstractCommand'
 import CloseChannel from './closeChannel'
 import Crawl from './crawl'
 import ListCommands from './listCommands'
@@ -52,26 +52,54 @@ export class Commands {
     }
   }
 
+  public allCommands(): string[] {
+    return Array.from(this.commandMap.keys())
+  }
+
   public find(command: string): AbstractCommand {
     return this.commandMap.get(command.trim())
   }
   
-  public async execute(message: string): Promise<void> {
+  public async execute(message: string): Promise<boolean> {
     const [command, query]: (string | undefined)[] = message.trim().split(SPLIT_OPERAND_QUERY_REGEX).slice(1)
 
     if (command == null) {
-      return;
+      return true;
     }
 
     let cmd = this.find(command)
     
     if (cmd){
-      return await cmd.execute(query)
+      await cmd.execute(query)
+      return true
     }
+    return false
   }
 
-  public async complete(message: string): Promise<void> {
-    const [command, query]: (string | undefined)[] = message.trim().split(SPLIT_OPERAND_QUERY_REGEX).slice(1)
+  public async autocomplete(message: string): Promise<AutoCompleteResult> {
+    // If the line is empty, we show all possible commands as results.
+    if (message == null || message == '') {
+      return [this.allCommands(), message]
+    }
 
+    const [command, query]: (string | undefined)[] = message.trim().split(SPLIT_OPERAND_QUERY_REGEX).slice(1)
+    const cmd = await this.find(command)
+    if (cmd) {
+      return cmd.autocomplete(query, message)
+    }
+    // Command not found - try assuming it's an incomplete command
+    const hits = this.allCommands().reduce((acc: string[], name: string) => {
+          if (name.startsWith(message)) {
+            acc.push(name)
+          }
+          return acc
+    }, [])
+
+    if (hits.length > 0){
+      return [hits, message]
+    }
+
+    // We did our best, lets just show all possible commands
+    return [this.allCommands(), message]
   }
 }

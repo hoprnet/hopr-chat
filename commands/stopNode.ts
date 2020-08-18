@@ -3,10 +3,12 @@ import type Hopr from '@hoprnet/hopr-core'
 
 import chalk from 'chalk'
 
-import type AbstractCommand from './abstractCommand'
+import { AbstractCommand } from './abstractCommand'
 
-export default class StopNode implements AbstractCommand {
-  constructor(public node: Hopr<HoprCoreConnector>) {}
+export default class StopNode extends AbstractCommand {
+  constructor(public node: Hopr<HoprCoreConnector>) {
+    super()
+  }
 
   name() { return 'quit' }
   help() { return 'stops the node and terminates the process'}
@@ -26,9 +28,5 @@ export default class StopNode implements AbstractCommand {
     } catch (err) {
       console.log(chalk.red(err.message))
     }
-  }
-
-  complete(line: string, cb: (err: Error | undefined, hits: [string[], string]) => void): void {
-    cb(undefined, [[''], line])
   }
 }

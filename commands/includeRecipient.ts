@@ -1,4 +1,4 @@
-import type AbstractCommand from './abstractCommand'
+import { AbstractCommand } from './abstractCommand'
 import type HoprCoreConnector from '@hoprnet/hopr-core-connector-interface'
 import type Hopr from '@hoprnet/hopr-core'
 import chalk from 'chalk'
@@ -6,9 +6,10 @@ import readline from 'readline'
 import { clearString } from '@hoprnet/hopr-utils'
 import { settings } from '../utils'
 
-export default class IncludeRecipient implements AbstractCommand {
-  constructor(public node: Hopr<HoprCoreConnector>, public rl: readline.Interface) {}
-
+export default class IncludeRecipient extends AbstractCommand {
+  constructor(public node: Hopr<HoprCoreConnector>, public rl: readline.Interface) {
+    super()
+  }
 
   name() { return 'includeRecipient' }
   help() { return 'preprends your address to all messages' }
@@ -23,6 +24,4 @@ export default class IncludeRecipient implements AbstractCommand {
     clearString(question, this.rl)
     console.log(`You have set your “includeRecipient” settings to ${ settings.includeRecipient ? chalk.green('yes') : chalk.red('no') }`)
   }
-
-  complete() {}
 }

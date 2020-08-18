@@ -1,14 +1,17 @@
 import type HoprCoreConnector from '@hoprnet/hopr-core-connector-interface'
 import type Hopr from '@hoprnet/hopr-core'
-import type AbstractCommand from './abstractCommand'
+import { AbstractCommand } from './abstractCommand'
+import type { AutoCompleteResult } from './abstractCommand'
 
 import type PeerId from 'peer-id'
 
 import { checkPeerIdInput, isBootstrapNode, getPeers } from '../utils'
 import chalk from 'chalk'
 
-export default class Ping implements AbstractCommand {
-  constructor(public node: Hopr<HoprCoreConnector>) {}
+export default class Ping extends AbstractCommand {
+  constructor(public node: Hopr<HoprCoreConnector>) {
+    super()
+  }
   name() { return 'ping' }
   help() { return 'pings another node to check its availability' }
 
@@ -38,7 +41,7 @@ export default class Ping implements AbstractCommand {
     }
   }
 
-  complete(line: string, cb: (err: Error | undefined, hits: [string[], string]) => void, query?: string): void {
+  async autocomplete(query: string, line: string): Promise<AutoCompleteResult> {
     const peers = getPeers(this.node)
 
     const peerIds =
@@ -54,9 +57,9 @@ export default class Ping implements AbstractCommand {
           }, [])
 
     if (!peerIds.length) {
-      return cb(undefined, [[''], line])
+      return [[''], line]
     }
 
-    return cb(undefined, [peerIds.map((peerId: string) => `ping ${peerId}`), line])
+    return [peerIds.map((peerId: string) => `ping ${peerId}`), line]
   }
 }
