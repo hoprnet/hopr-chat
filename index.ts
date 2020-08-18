@@ -229,4 +229,7 @@ async function main() {
   }
 }
 
-main()
+// If module is run as main (ie. from command line)
+if (typeof module !== 'undefined' && !module.parent) {
+  main()
+}
