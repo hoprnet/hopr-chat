@@ -15,14 +15,17 @@ import { clearString, startDelayedInterval, u8aToHex } from '@hoprnet/hopr-utils
 import readline from 'readline'
 
 export default class OpenChannel implements AbstractCommand {
-  constructor(public node: Hopr<HoprCoreConnector>) {}
+  constructor(public node: Hopr<HoprCoreConnector>, public rl: readline.Interface) {}
+    
+  name(){ return 'open' }
+  help(){ return 'opens a payment channel'}
 
   /**
    * Encapsulates the functionality that is executed once the user decides to open a payment channel
    * with another party.
    * @param query peerId string to send message to
    */
-  async execute(rl: readline.Interface, query?: string): Promise<void> {
+  async execute(query?: string): Promise<void> {
     if (query == null || query == '') {
       console.log(chalk.red(`Invalid arguments. Expected 'open <peerId>'. Received '${query}'`))
       return
@@ -52,20 +55,20 @@ export default class OpenChannel implements AbstractCommand {
     const exitQuestion = `Do you want to cancel (${chalk.green('Y')} / ${chalk.red('n')}) : `
 
     do {
-      tmpFunds = await new Promise<string>((resolve) => rl.question(tokenQuestion, resolve))
+      tmpFunds = await new Promise<string>((resolve) => this.rl.question(tokenQuestion, resolve))
       try {
         funds = new BigNumber(tmpFunds)
       } catch {}
-      clearString(tokenQuestion + tmpFunds, rl)
+      clearString(tokenQuestion + tmpFunds, this.rl)
 
       if (tmpFunds.length == 0) {
-        let decision = await new Promise<string>((resolve) => rl.question(exitQuestion, resolve))
+        let decision = await new Promise<string>((resolve) => this.rl.question(exitQuestion, resolve))
         if (decision.length == 0 || decision.match(/^y(es)?$/i)) {
-          clearString(exitQuestion + decision, rl)
+          clearString(exitQuestion + decision, this.rl)
 
           return
         }
-        clearString(exitQuestion + decision, rl)
+        clearString(exitQuestion + decision, this.rl)
       }
     } while (funds == null || funds.lte(0) || funds.gt(tokens) || funds.isNaN())
 

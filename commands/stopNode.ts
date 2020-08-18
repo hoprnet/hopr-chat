@@ -8,6 +8,8 @@ import type AbstractCommand from './abstractCommand'
 export default class StopNode implements AbstractCommand {
   constructor(public node: Hopr<HoprCoreConnector>) {}
 
+  name() { return 'quit' }
+  help() { return 'stops the node and terminates the process'}
   /**
    * Stops the node and kills the process in case it does not quit by itself.
    */

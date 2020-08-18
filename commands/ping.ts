@@ -9,6 +9,8 @@ import chalk from 'chalk'
 
 export default class Ping implements AbstractCommand {
   constructor(public node: Hopr<HoprCoreConnector>) {}
+  name() { return 'ping' }
+  help() { return 'pings another node to check its availability' }
 
   async execute(query?: string): Promise<void> {
     if (query == null) {

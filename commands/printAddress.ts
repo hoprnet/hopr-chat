@@ -8,6 +8,8 @@ import { u8aToHex } from '@hoprnet/hopr-utils'
 
 export default class PrintAddress implements AbstractCommand {
   constructor(public node: Hopr<HoprCoreConnector>) {}
+  name() { return 'myAddress'}
+  help() { return 'shows the address of this node' }
 
   /**
    * Prints the name of the network we are using and the

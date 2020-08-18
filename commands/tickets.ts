@@ -8,7 +8,8 @@ import type AbstractCommand from './abstractCommand'
 
 export default class Tickets implements AbstractCommand {
   constructor(public node: Hopr<HoprCoreConnector>) {}
-
+  name() { return 'tickets'}
+  help() { return 'lists tickets of a channel'}
   /**
    * @param query channelId string to send message to
    */

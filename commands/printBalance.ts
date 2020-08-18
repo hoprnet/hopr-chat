@@ -8,6 +8,14 @@ import chalk from 'chalk'
 export default class PrintBalance implements AbstractCommand {
   constructor(public node: Hopr<HoprCoreConnector>) {}
 
+  name() {
+    return 'print'
+  }
+
+  help():string {
+    return 'shows our current balance'
+  }
+
   /**
    * Prints the balance of our account.
    * @notice triggered by the CLI

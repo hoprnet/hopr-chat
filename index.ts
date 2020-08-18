@@ -20,13 +20,11 @@ import clear from 'clear'
 
 import { parseOptions, keywords } from './utils'
 import { clearString } from '@hoprnet/hopr-utils'
-import { Commands } from './commands'
+import { Commands, SPLIT_OPERAND_QUERY_REGEX } from './commands'
 import dependencies from './utils/dependancies'
 import { renderHoprLogo } from './logo'
 
 export * as commands from './commands'
-
-const SPLIT_OPERAND_QUERY_REGEX: RegExp = /([\w\-]+)(?:\s+)?([\w\s\-.]+)?/
 
 // Name our process 'hopr'
 process.title = 'hopr'
@@ -45,6 +43,7 @@ function tabCompletion(commands: Commands) {
       return cb(undefined, [keywords.map((entry) => entry[0]), line])
     }
 
+    /*
     const [command, query]: (string | undefined)[] = line.trim().split(SPLIT_OPERAND_QUERY_REGEX).slice(1)
 
     if (command == null || command === '') {
@@ -79,17 +78,20 @@ function tabCompletion(commands: Commands) {
 
         return cb(undefined, [hits.length ? hits : keywords.map((keyword) => keyword[0]), line])
     }
+    */
   }
 }
 
 async function runAsRegularNode() {
-  const commands = new Commands(node)
+  let commands: Commands;
 
   let rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
     completer: tabCompletion(commands),
   })
+
+  commands = new Commands(node, rl)
 
   rl.on('SIGINT', async () => {
     const question = `Are you sure you want to exit? (${chalk.green('y')}, ${chalk.red('N')}): `
@@ -98,14 +100,14 @@ async function runAsRegularNode() {
 
     if (answer.match(/^y(es)?$/i)) {
       clearString(question, rl)
-      await commands.stopNode.execute()
+      await commands.execute('quit')
       return
     }
     rl.prompt()
   })
 
   rl.once('close', async () => {
-    await commands.stopNode.execute()
+    await commands.execute('quit')
     return
   })
 
@@ -117,6 +119,8 @@ async function runAsRegularNode() {
       return
     }
 
+    commands.execute(input)
+/*
     const [command, query]: (string | undefined)[] = input.trim().split(SPLIT_OPERAND_QUERY_REGEX).slice(1)
 
     if (command == null) {
@@ -172,6 +176,7 @@ async function runAsRegularNode() {
         break
     }
 
+   */
     rl.prompt()
   })
 

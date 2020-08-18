@@ -11,6 +11,9 @@ import { u8aToHex } from '@hoprnet/hopr-utils'
 
 export default class ListOpenChannels implements AbstractCommand {
   constructor(public node: Hopr<HoprCoreConnector>) {}
+
+  name() { return 'openChannels' }
+  help() { return 'lists all currently open channels' }
   /**
    * Lists all channels that we have with other nodes. Triggered from the CLI.
    */

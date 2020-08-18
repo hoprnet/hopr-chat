@@ -14,6 +14,14 @@ import { pubKeyToPeerId } from '@hoprnet/hopr-core/lib/utils'
 export default class CloseChannel implements AbstractCommand {
   constructor(public node: Hopr<HoprCoreConnector>) {}
 
+  name() {
+    return 'close'
+  }
+
+  help() {
+    return 'Close a channel' //TODO 
+  }
+
   async execute(query?: string): Promise<any> {
     if (query == null) {
       console.log(chalk.red(`Invalid arguments. Expected 'close <peerId>'. Received '${query}'`))

@@ -1,11 +1,21 @@
-import { keywords } from '../utils/keywords'
-
 import chalk from 'chalk'
 
 import AbstractCommand from './abstractCommand'
 
 export default class ListCommands implements AbstractCommand {
+  constructor(private getCommands: () => AbstractCommand[]){}
+
+  name(){
+    return 'help'
+  }
+
+  help(){
+    return 'shows this help page'
+  }
+
   execute() {
+    let keywords = this.getCommands().map(x => x.name())
+
     let maxLength = 0
     for (let i = 0; i < keywords.length; i++) {
       if (keywords[i][0].length > maxLength) {

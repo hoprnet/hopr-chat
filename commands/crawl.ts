@@ -11,6 +11,14 @@ import AbstractCommand from './abstractCommand'
 export default class Crawl implements AbstractCommand {
   constructor(public node: Hopr<HoprCoreConnector>) {}
 
+  name() {
+    return 'crawl'
+  }
+
+  help(){
+    return 'crawls the network and tries to find other nodes'
+  }
+
   /**
    * Crawls the network to check for other nodes. Triggered by the CLI.
    */
