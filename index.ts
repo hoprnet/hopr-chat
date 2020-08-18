@@ -20,7 +20,7 @@ import clear from 'clear'
 
 import { parseOptions } from './utils'
 import { clearString } from '@hoprnet/hopr-utils'
-import { Commands, SPLIT_OPERAND_QUERY_REGEX } from './commands'
+import { Commands } from './commands'
 import dependencies from './utils/dependancies'
 import { renderHoprLogo } from './logo'
 
