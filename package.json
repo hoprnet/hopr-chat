@@ -76,7 +76,6 @@
       "^.+\\.(t|j)s$": "ts-jest"
     },
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node",
-    "maxConcurrency": 1
+    "testEnvironment": "node"
   }
 }
