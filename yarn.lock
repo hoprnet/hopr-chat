@@ -410,18 +410,18 @@
     "@ethersproject/rlp" "^5.0.0"
     "@ethersproject/signing-key" "^5.0.0"
 
-"@hoprnet/hopr-core-connector-interface@^1.17.0-alpha.43":
-  version "1.17.0-alpha.43"
-  resolved "https://registry.yarnpkg.com/@hoprnet/hopr-core-connector-interface/-/hopr-core-connector-interface-1.17.0-alpha.43.tgz#e27008475d93804fde4ebe7a2d6f5e1ae1fa7a5a"
-  integrity sha512-DLQeCXGYjeRFsfUq7hCJNFVaJ/sos918RlKfiGS8rWjli37zJsaOsXWEp52yzCkRApnKAAPsJ6rhO9Q9IsipeA==
+"@hoprnet/hopr-core-connector-interface@^1.17.0-alpha.54":
+  version "1.17.0-alpha.54"
+  resolved "https://registry.yarnpkg.com/@hoprnet/hopr-core-connector-interface/-/hopr-core-connector-interface-1.17.0-alpha.54.tgz#a474cb417385248271b2b6049a27f792a25fc662"
+  integrity sha512-63DpLR4otXchHRMDmeyYIBV4I3g0TNQKpe7vOzSun1l5uABxWO0xBs7f3B6RvSXwXLftgvB6oC+Lrerhy3N9Kw==
 
-"@hoprnet/hopr-core-ethereum@^1.17.0-alpha.43":
-  version "1.17.0-alpha.43"
-  resolved "https://registry.yarnpkg.com/@hoprnet/hopr-core-ethereum/-/hopr-core-ethereum-1.17.0-alpha.43.tgz#64c3eafd564c3eca7612f2b523e6d7dd4d42ffaf"
-  integrity sha512-ud2+2aRXqZmyevKNly+4SwRwOq4cXFJU81E009z1/z1Rn6BUr+kGLXVneFST6u8sdDYn56wNRxDSHUjen0A/xQ==
+"@hoprnet/hopr-core-ethereum@^1.17.0-alpha.54":
+  version "1.17.0-alpha.54"
+  resolved "https://registry.yarnpkg.com/@hoprnet/hopr-core-ethereum/-/hopr-core-ethereum-1.17.0-alpha.54.tgz#57b36f1b3d64bc27548e5d3224ed3577757938f5"
+  integrity sha512-FzuJ8XRxfsVqgpoLSzQ8rGQ0kchm0eOk5qRDlkAU3TuyzEfy1wW7vm+WoIieV467c9ZqtsW0uzXWo+nZ0J+CZg==
   dependencies:
-    "@hoprnet/hopr-ethereum" "^1.17.0-alpha.43"
-    "@hoprnet/hopr-utils" "^1.17.0-alpha.43"
+    "@hoprnet/hopr-ethereum" "^1.17.0-alpha.54"
+    "@hoprnet/hopr-utils" "^1.17.0-alpha.54"
     bn.js "^5.1.2"
     chalk "^4.1.0"
     debug "^4.1.1"
@@ -435,14 +435,14 @@
     web3-eth "^1.2.11"
     web3-eth-contract "^1.2.11"
 
-"@hoprnet/hopr-core@^1.17.0-alpha.43":
-  version "1.17.0-alpha.43"
-  resolved "https://registry.yarnpkg.com/@hoprnet/hopr-core/-/hopr-core-1.17.0-alpha.43.tgz#8bf5e27b3dc7fe7ba26aaed6ecf2c7018a271fab"
-  integrity sha512-8tBBctf0zj3r4k8KgOMIJuINChTTdBXtTgV0s92JUnt8Wq3GBjyWBbqclHJpYasnS17Z1iycJstRC/J7RjrkUA==
+"@hoprnet/hopr-core@^1.17.0-alpha.54":
+  version "1.17.0-alpha.54"
+  resolved "https://registry.yarnpkg.com/@hoprnet/hopr-core/-/hopr-core-1.17.0-alpha.54.tgz#353a5cfa740b827c342b9e0e23fa18045bab9478"
+  integrity sha512-s4aUJSr2+ivvrMnBQCDX+/hybAkkXFj4R1ySHZPTles8OkUlVp+wT0jKzYYSBgozvf3KVo+Ng0X9SLSe7oWXHA==
   dependencies:
-    "@hoprnet/hopr-core-ethereum" "^1.17.0-alpha.43"
+    "@hoprnet/hopr-core-ethereum" "^1.17.0-alpha.54"
     "@hoprnet/hopr-demo-seeds" "1.8.0"
-    "@hoprnet/hopr-utils" "^1.17.0-alpha.43"
+    "@hoprnet/hopr-utils" "^1.17.0-alpha.54"
     abort-controller "^3.0.0"
     abortable-iterator "^3.0.0"
     bl "^4.0.3"
@@ -480,13 +480,13 @@
   dependencies:
     micro "^9.3.4"
 
-"@hoprnet/hopr-ethereum@^1.17.0-alpha.43":
-  version "1.17.0-alpha.43"
-  resolved "https://registry.yarnpkg.com/@hoprnet/hopr-ethereum/-/hopr-ethereum-1.17.0-alpha.43.tgz#08f51f40f9d341d9fc9c6adc5c7c9453edcb4382"
-  integrity sha512-9vE6h+htv2k3OHwaQF9a6lXL2kzfSgmYkB34xDV/3dB8Vjm5ZyRtgyjIhlgsoM9lVoO1I+kDvH/XMBSbF2VANw==
+"@hoprnet/hopr-ethereum@^1.17.0-alpha.54":
+  version "1.17.0-alpha.54"
+  resolved "https://registry.yarnpkg.com/@hoprnet/hopr-ethereum/-/hopr-ethereum-1.17.0-alpha.54.tgz#c753aa37be1608b1e6ff71e1f20c7e7fdf9baf84"
+  integrity sha512-HWvc3aa+H9ecAs+h/A7VVBFSQKc6P1REYcYAlMJmwWtYYFxJkYvhpfxJT7lHKylkXfnr3WwUQFRJmGxEc7HZBw==
   dependencies:
     "@hoprnet/hopr-demo-seeds" "1.8.0"
-    "@hoprnet/hopr-utils" "^1.17.0-alpha.43"
+    "@hoprnet/hopr-utils" "^1.17.0-alpha.54"
     "@openzeppelin/contracts" "^3.0.1"
     "@openzeppelin/test-helpers" "^0.5.5"
     "@truffle/debug-utils" "^4.1.1"
@@ -496,14 +496,14 @@
     ganache-core "^2.12.0-beta.0"
     secp256k1 "4.0.2"
     truffle "^5.1.23"
-    truffle-plugin-verify "^0.3.11"
+    truffle-plugin-verify "^0.4.0"
     ts-node "^8.10.2"
     web3 "^1.2.11"
 
-"@hoprnet/hopr-utils@^1.17.0-alpha.43":
-  version "1.17.0-alpha.43"
-  resolved "https://registry.yarnpkg.com/@hoprnet/hopr-utils/-/hopr-utils-1.17.0-alpha.43.tgz#40a99b028f9b89854edddbb57f754d58d4d3a170"
-  integrity sha512-smp1TPz+SHO0lW/PDmbRLGPwBTorUwoLobamyWtPQEe6/FU55S9X0WScjebe3uyTxruCpuTP7o329PGzwHXTjw==
+"@hoprnet/hopr-utils@^1.17.0-alpha.54":
+  version "1.17.0-alpha.54"
+  resolved "https://registry.yarnpkg.com/@hoprnet/hopr-utils/-/hopr-utils-1.17.0-alpha.54.tgz#99f794d1eed835a59d0012ffd1d9d3dd961b8550"
+  integrity sha512-v7wR82b7P6RfzH5U/YjmEiUkEceROzZTiem0Kub47l/JsWeaU0vpyk7J8JuGSEV0pJ7MErB+INrXW3/KcGIhRw==
   dependencies:
     bignumber.js "^9.0.0"
     libp2p-crypto "^0.17.9"
@@ -2301,6 +2301,15 @@ bl@^4.0.0, bl@^4.0.1, bl@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/bl/-/bl-4.0.2.tgz#52b71e9088515d0606d9dd9cc7aa48dc1f98e73a"
   integrity sha512-j4OH8f6Qg2bGuWfRiltT2HYGx0e1QcBTrK9KAHNMwMZdQnDZFk0ZSYIpADjYCB3U12nicC5tVJwSIhwOWjb4RQ==
+  dependencies:
+    buffer "^5.5.0"
+    inherits "^2.0.4"
+    readable-stream "^3.4.0"
+
+bl@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/bl/-/bl-4.0.3.tgz#12d6287adc29080e22a705e5764b2a9522cdc489"
+  integrity sha512-fs4G6/Hu4/EE+F75J8DuN/0IpQqNjAdC7aEQv7Qt8MHGUH7Ckv2MwTEEeN9QehD0pfIDkMI1bkHYkKy7xHyKIg==
   dependencies:
     buffer "^5.5.0"
     inherits "^2.0.4"
@@ -5197,11 +5206,6 @@ he@1.2.0, he@^1.1.1:
   resolved "https://registry.yarnpkg.com/he/-/he-1.2.0.tgz#84ae65fa7eafb165fddb61566ae14baf05664f0f"
   integrity sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==
 
-heap-js@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/heap-js/-/heap-js-2.1.1.tgz#d8f7367d6b22ca415f17b0a4f4de7c1bb69ac982"
-  integrity sha512-hqBidw0lY8sDMy5PUHbY+P4KZcGM2ArnnY3SqSkNoI14RJfhik7Bse3zHzSh6ZYXEUxBj/7nEdQUrpXtf+OYYQ==
-
 heap-js@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/heap-js/-/heap-js-2.1.2.tgz#f438145d24082b078a9a35d91e03511ccad48176"
@@ -5947,7 +5951,7 @@ it-goodbye@^2.0.1:
   dependencies:
     buffer "^5.6.0"
 
-it-handshake@^1.0.0, it-handshake@^1.0.1:
+it-handshake@^1.0.0, it-handshake@^1.0.1, it-handshake@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/it-handshake/-/it-handshake-1.0.2.tgz#64804d42621f6825f550c89cdcbd30d1bf978204"
   integrity sha512-uutOim5xF1eyDQD3u8qd3TxbWKwxqGMlbvacZsRsPdjO1BD9lnPTVci0jSMGsvMOu+5Y3W/QQ4hPQb87qPmPVQ==
@@ -9269,7 +9273,7 @@ scryptsy@^1.2.1:
   dependencies:
     pbkdf2 "^3.0.3"
 
-secp256k1@4.0.2, secp256k1@^4.0.0, secp256k1@^4.0.1, secp256k1@^4.0.2, secp256k1@~4.0.1:
+secp256k1@4.0.2, secp256k1@^4.0.0, secp256k1@^4.0.1, secp256k1@^4.0.2, secp256k1@~4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/secp256k1/-/secp256k1-4.0.2.tgz#15dd57d0f0b9fdb54ac1fa1694f40e5e9a54f4a1"
   integrity sha512-UDar4sKvWAksIlfX3xIaQReADn+WFnHvbVujpcbr+9Sf/69odMwy2MUsz5CKLQgX9nsIyrjuxL2imVyoNHa3fg==
@@ -9539,10 +9543,10 @@ snapdragon@^0.8.1:
     source-map-resolve "^0.5.0"
     use "^3.1.0"
 
-sol-merger@3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/sol-merger/-/sol-merger-3.0.1.tgz#b87cdd15dbcc4aa741fd1ac307a7e178f0356a87"
-  integrity sha512-zVYm51Kym+lruM5DLuhRjYeiQ014TXM3iWpVluR6oVjTEFKF/Q/LmrcQZK7JF/ceK9zpYpcU1YJPdZRvEsvV5w==
+sol-merger@3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/sol-merger/-/sol-merger-3.1.0.tgz#547b282a616d106c0fa8869e0a275fd7db0213d8"
+  integrity sha512-4/JELeFlB8bcyqttRZ7pE/EGpevft9Q7IPjMaKLKMrj1exmdyt+1qSfuSXxueFXRZQxSd21u6DjEedDkOtQ5yQ==
   dependencies:
     antlr4ts "^0.5.0-alpha.3"
     cli-color "^1.4.0"
@@ -10178,16 +10182,16 @@ trim-right@^1.0.1:
   resolved "https://registry.yarnpkg.com/trim-right/-/trim-right-1.0.1.tgz#cb2e1203067e0c8de1f614094b9fe45704ea6003"
   integrity sha1-yy4SAwZ+DI3h9hQJS5/kVwTqYAM=
 
-truffle-plugin-verify@^0.3.11:
-  version "0.3.11"
-  resolved "https://registry.yarnpkg.com/truffle-plugin-verify/-/truffle-plugin-verify-0.3.11.tgz#7e8e46b932c21924ee829af18d85d0edd3cce5a1"
-  integrity sha512-RN18HcPSuxcdP1oDlRjIu56fEx+Bo1Rf0h+Ra/cI1dQ8rQcdikpdy4r+CHxT/mvUy8vEwS39doB5vWDNvydpPA==
+truffle-plugin-verify@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/truffle-plugin-verify/-/truffle-plugin-verify-0.4.0.tgz#5e93bc8fd8f07b2554d320c20811938e40dc1de9"
+  integrity sha512-wI6J8vB6DZYyqTouMCayGWwTqy5VZwLaZ/vGjRjtt1MdXDzfyeGw5UHJujjFQYU1hCDYt/0LmAVmBkWg9MBWmA==
   dependencies:
     axios "0.19.2"
     cli-logger "0.5.40"
     delay "4.3.0"
     querystring "0.2.0"
-    sol-merger "3.0.1"
+    sol-merger "3.1.0"
 
 truffle@^5.1.23:
   version "5.1.46"
