@@ -1,5 +1,6 @@
 import type HoprCoreConnector from '@hoprnet/hopr-core-connector-interface'
 import type Hopr from '@hoprnet/hopr-core'
+import type PeerId from 'peer-id'
 import { AutoCompleteResult } from './abstractCommand'
 import { AbstractCommand, GlobalState, CommandResponse } from './abstractCommand'
 import CloseChannel from './closeChannel'
@@ -17,7 +18,7 @@ import { MultiSendMessage } from './multisend'
 import StopNode from './stopNode'
 import Version from './version'
 import Tickets from './tickets'
-import { IncludeRecipient, IncludeRecipientFancy } from './includeRecipient'
+import RedeemTickets from './redeemTickets'
 import Settings from './settings'
 import Withdraw from './withdraw'
 import readline from 'readline'
@@ -32,7 +33,8 @@ export class Commands {
   constructor(public node: Hopr<HoprCoreConnector>, rl?: readline.Interface) {
     this.state = {
       includeRecipient: false,
-      aliases: new Map()
+      routing: 'direct',
+      aliases: new Map<string, PeerId>(),
     }
 
     this.commands = [
@@ -49,24 +51,23 @@ export class Commands {
       new StopNode(node),
       new Version(),
       new Tickets(node),
+      new RedeemTickets(node),
       new Settings(),
       new Alias(node),
       new Withdraw(node),
     ]
 
-    if(rl) {
+    if (rl) {
       this.commands.push(new OpenChannel(node, rl))
       this.commands.push(new SendMessageFancy(node, rl))
       this.commands.push(new MultiSendMessage(node, rl))
-      this.commands.push(new IncludeRecipientFancy(node, rl))
     } else {
       this.commands.push(new SendMessage(node))
-      this.commands.push(new IncludeRecipient())
     }
 
     this.commandMap = new Map()
     for (let command of this.commands) {
-      if (this.commandMap.has(command.name())){
+      if (this.commandMap.has(command.name())) {
         throw new Error(`Duplicate commands for ${command}`)
       }
       this.commandMap.set(command.name(), command)
@@ -80,19 +81,19 @@ export class Commands {
   public find(command: string): AbstractCommand | undefined {
     return this.commandMap.get(command.trim())
   }
-  
+
   public async execute(message: string): Promise<CommandResponse> {
     const split: (string | undefined)[] = message.trim().split(/\s+/)
     const command = split[0]
     const query = split.slice(1).join(' ')
 
     if (command == null) {
-      return undefined;
+      return undefined
     }
 
-    let cmd = this.find(command) 
+    let cmd = this.find(command)
 
-    if (cmd){
+    if (cmd) {
       return await cmd.execute(query || '', this.state)
     }
 
@@ -107,18 +108,18 @@ export class Commands {
 
     const [command, query]: (string | undefined)[] = message.trim().split(/\s+/).slice(0)
     const cmd = this.find(command)
-    if (cmd && typeof cmd.autocomplete !== "undefined") {
+    if (cmd && typeof cmd.autocomplete !== 'undefined') {
       return cmd.autocomplete(query, message, this.state)
     }
     // Command not found - try assuming it's an incomplete command
     const hits = this.allCommands().reduce((acc: string[], name: string) => {
-          if (name.startsWith(message)) {
-            acc.push(name)
-          }
-          return acc
+      if (name.startsWith(message)) {
+        acc.push(name)
+      }
+      return acc
     }, [])
 
-    if (hits.length > 0){
+    if (hits.length > 0) {
       return [hits, message]
     }
 

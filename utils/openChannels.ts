@@ -29,6 +29,10 @@ export function getPeers(
   return peers
 }
 
+/**
+ * Get node's peer ids in string.
+ * @returns an array of peer ids
+ */
 export function getPeersIdsAsString(
   node: Hopr<HoprCoreConnector>,
   ops: {
@@ -36,37 +40,49 @@ export function getPeersIdsAsString(
   } = {
     noBootstrapNodes: false,
   }
-): string[]{
-  return getPeers(node, ops).map(peerId => peerId.toB58String())
+): string[] {
+  return getPeers(node, ops).map((peerId) => peerId.toB58String())
 }
 
 /**
- * Get node's open channels by looking into connector's DB.
+ * Get node's open channel instances by looking into connector's DB.
  * @returns a promise that resolves to an array of peer ids
  */
-export function getMyOpenChannels(node: Hopr<HoprCoreConnector>): Promise<PeerId[]> {
-  return new Promise<PeerId[]>((resolve, reject) => {
+export function getMyOpenChannelInstances(node: Hopr<HoprCoreConnector>): Promise<ChannelInstance[]> {
+  return new Promise<ChannelInstance[]>((resolve, reject) => {
     try {
-      let peerIds: PeerId[] = []
+      let channels: ChannelInstance[] = []
 
       node.paymentChannels.channel.getAll(
         async (channel: ChannelInstance) => {
-          const pubKey = await channel.offChainCounterparty
-          const peerId = await pubKeyToPeerId(pubKey)
-
-          if (!peerIds.includes(peerId)) {
-            peerIds.push(peerId)
-          }
+          channels.push(channel)
         },
         async (promises: Promise<void>[]) => {
           await Promise.all(promises)
-          return resolve(peerIds)
+          return resolve(channels)
         }
       )
     } catch (err) {
       return reject(err)
     }
   })
+}
+
+/**
+ * Get node's counterParties by looking into the open channels stored in the DB.
+ * @returns a promise that resolves to an array of peer ids
+ */
+export async function getMyOpenChannels(node: Hopr<HoprCoreConnector>): Promise<PeerId[]> {
+  const openChannels = await getMyOpenChannelInstances(node)
+
+  return Promise.all(
+    openChannels.map(async (channel) => {
+      const pubKey = await channel.offChainCounterparty
+      const peerId = await pubKeyToPeerId(pubKey)
+
+      return peerId
+    })
+  )
 }
 
 /**

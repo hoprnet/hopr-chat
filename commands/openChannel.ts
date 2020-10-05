@@ -19,9 +19,13 @@ export default class OpenChannel extends AbstractCommand {
   constructor(public node: Hopr<HoprCoreConnector>, public rl: readline.Interface) {
     super()
   }
-    
-  name(){ return 'open' }
-  help(){ return 'opens a payment channel'}
+
+  name() {
+    return 'open'
+  }
+  help() {
+    return 'opens a payment channel'
+  }
 
   /**
    * Encapsulates the functionality that is executed once the user decides to open a payment channel
@@ -30,7 +34,7 @@ export default class OpenChannel extends AbstractCommand {
    */
   async execute(query?: string): Promise<string | void> {
     if (query == null || query == '') {
-      return (chalk.red(`Invalid arguments. Expected 'open <peerId>'. Received '${query}'`))
+      return chalk.red(`Invalid arguments. Expected 'open <peerId>'. Received '${query}'`)
     }
 
     let counterparty: PeerId
@@ -106,12 +110,12 @@ export default class OpenChannel extends AbstractCommand {
           this.node.interactions.payments.open.interact(counterparty, balance)
       )
 
+      unsubscribe()
       return `${chalk.green(`Successfully opened channel`)} ${chalk.yellow(u8aToHex(channelId))}`
     } catch (err) {
+      unsubscribe()
       return chalk.red(err.message)
     }
-
-    unsubscribe()
   }
 
   async autocomplete(query: string, line: string): Promise<AutoCompleteResult> {
