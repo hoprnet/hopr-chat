@@ -32,9 +32,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@hoprnet/hopr-core": "^1.17.0-alpha.60",
-    "@hoprnet/hopr-core-connector-interface": "^1.17.0-alpha.60",
-    "@hoprnet/hopr-utils": "^1.17.0-alpha.60",
+    "@hoprnet/hopr-core": "^1.17.0-alpha.61",
+    "@hoprnet/hopr-core-connector-interface": "^1.17.0-alpha.61",
+    "@hoprnet/hopr-utils": "^1.17.0-alpha.61",
     "@zeit/ncc": "^0.22.3",
     "bignumber.js": "^9.0.1",
     "bn.js": "~5.1.2",
