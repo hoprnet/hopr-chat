@@ -1,6 +1,6 @@
 {
   "name": "@hoprnet/hopr-chat",
-  "version": "1.17.14-basodino-develop",
+  "version": "1.17.14-basodino-testnet",
   "description": "Interactive chat PoC for HOPR Protocol",
   "main": "lib/index.js",
   "scripts": {
